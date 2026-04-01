@@ -85,3 +85,23 @@
 .login-footer a:hover {
   text-decoration: underline;
 }
+
+/* Responsiveness for small devices */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 2rem 1.5rem;
+    box-shadow: none;
+    background-color: transparent;
+  }
+  
+  .login-page {
+    background: var(--surface);
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+  
+  .login-header h1 {
+    font-size: 1.5rem;
+  }
+}
+
