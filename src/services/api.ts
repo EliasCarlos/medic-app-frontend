@@ -1,4 +1,4 @@
-import type { AuthResponse } from '../types/auth';
+import type { AuthResponse, User } from '../types/auth';
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -46,7 +46,7 @@ export const authService = {
 };
 
 export const userService = {
-  async getProfile(): Promise<any> {
+  async getProfile(): Promise<User> {
     const token = authService.getToken();
     
     if (!token) {
@@ -59,7 +59,7 @@ export const userService = {
       }
     });
 
-    const result: ApiResponse<any> = await response.json();
+    const result: ApiResponse<User> = await response.json();
 
     if (!response.ok) {
       if (response.status === 401) {
@@ -71,3 +71,4 @@ export const userService = {
     return result.data;
   }
 };
+

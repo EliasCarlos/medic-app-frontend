@@ -22,6 +22,14 @@ export const Dashboard: React.FC = () => {
     return <div className="loading">Carregando painel...</div>;
   }
 
+  if (!user) {
+    return (
+      <div className="loading">
+        Erro ao carregar perfil. <Button onClick={handleLogout}>Sair</Button>
+      </div>
+    );
+  }
+
   return (
     <div className="dashboard-container">
       <header className="dashboard-header">
@@ -35,7 +43,7 @@ export const Dashboard: React.FC = () => {
       </header>
 
       <main className="container dashboard-main">
-        {user?.role === 'doctor' ? (
+        {user.role === 'doctor' ? (
           <DoctorDashboard user={user} />
         ) : (
           <PatientDashboard user={user} />
@@ -44,3 +52,4 @@ export const Dashboard: React.FC = () => {
     </div>
   );
 };
+

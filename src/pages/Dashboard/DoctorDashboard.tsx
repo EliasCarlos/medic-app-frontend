@@ -1,7 +1,8 @@
 import React from 'react';
+import type { User } from '../../types/auth';
 
 interface DoctorDashboardProps {
-  user: any;
+  user: User;
 }
 
 export const DoctorDashboard: React.FC<DoctorDashboardProps> = ({ user }) => {
