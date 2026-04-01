@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { authService } from '../../services/api';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
@@ -11,6 +11,8 @@ export const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+  const successMessage = location.state?.message;
 
   const mutation = useMutation({
     mutationFn: () => authService.login(email, password),
@@ -38,6 +40,12 @@ export const Login: React.FC = () => {
         </header>
 
         <form onSubmit={handleSubmit} className="login-form">
+          {successMessage && (
+            <div className="alert-success">
+              {successMessage}
+            </div>
+          )}
+
           {errorMessage && (
             <div className="alert-error">
               {errorMessage}
@@ -76,7 +84,7 @@ export const Login: React.FC = () => {
         </form>
 
         <footer className="login-footer">
-          <p>Não tem uma conta? <a href="#">Solicite acesso</a></p>
+          <p>Não tem uma conta? <Link to="/register">Cadastre-se como paciente</Link></p>
         </footer>
       </div>
     </div>

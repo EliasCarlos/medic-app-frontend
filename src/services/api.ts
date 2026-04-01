@@ -1,4 +1,4 @@
-import type { AuthResponse, User } from '../types/auth';
+import type { AuthResponse, User, Patient, CreatePatientData } from '../types/auth';
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -25,7 +25,6 @@ export const authService = {
       throw new Error(result.message || 'Falha ao fazer login');
     }
 
-    // Access result.data because the backend wraps the response
     const data = result.data;
     
     localStorage.setItem('access_token', data.access_token);
@@ -40,7 +39,7 @@ export const authService = {
     window.location.href = '/login';
   },
 
-  getToken() {
+  getToken(): string | null {
     return localStorage.getItem('access_token');
   }
 };
@@ -71,4 +70,25 @@ export const userService = {
     return result.data;
   }
 };
+
+export const patientService = {
+  async register(data: CreatePatientData): Promise<Patient> {
+    const response = await fetch(`${BASE_URL}/patient`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result: ApiResponse<Patient> = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.message || 'Falha ao realizar cadastro');
+    }
+
+    return result.data;
+  }
+};
+
 
