@@ -4,6 +4,7 @@ import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { authService } from '../../services/api';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
+import { ThemeToggle } from '../../components/ThemeToggle';
 import './styles.css';
 
 export const Login: React.FC = () => {
@@ -33,6 +34,9 @@ export const Login: React.FC = () => {
 
   return (
     <div className="login-page">
+      <div className="theme-toggle-wrapper">
+        <ThemeToggle />
+      </div>
       <div className="login-card">
         <header className="login-header">
           <h1>Bem-vindo ao MedicApp</h1>

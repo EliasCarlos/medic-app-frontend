@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { patientService } from '../../services/api';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
+import { ThemeToggle } from '../../components/ThemeToggle';
 import './styles.css';
 
 export const Register: React.FC = () => {
@@ -45,6 +46,9 @@ export const Register: React.FC = () => {
 
   return (
     <div className="register-page">
+      <div className="theme-toggle-wrapper">
+        <ThemeToggle />
+      </div>
       <div className="register-card">
         <header className="register-header">
           <h1>Crie sua conta</h1>

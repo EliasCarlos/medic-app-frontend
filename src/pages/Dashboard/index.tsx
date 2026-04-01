@@ -4,6 +4,7 @@ import { userService, authService } from '../../services/api';
 import { Button } from '../../components/Button';
 import { DoctorDashboard } from './DoctorDashboard';
 import { PatientDashboard } from './PatientDashboard';
+import { ThemeToggle } from '../../components/ThemeToggle';
 import './styles.css';
 
 export const Dashboard: React.FC = () => {
@@ -36,6 +37,7 @@ export const Dashboard: React.FC = () => {
         <div className="container header-content">
           <h1 className="logo">MedicApp</h1>
           <div className="user-info">
+            <ThemeToggle />
             <span className="user-role">{role}</span>
             <Button variant="outline" onClick={handleLogout}>Sair</Button>
           </div>
