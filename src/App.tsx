@@ -2,20 +2,39 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
 
-function App() {
-  const isAuthenticated = () => {
-    return !!localStorage.getItem('access_token');
-  };
+// Component to protect private routes
+const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
+  const isAuthenticated = !!localStorage.getItem('access_token');
+  return isAuthenticated ? <>{children}</> : <Navigate to="/login" replace />;
+};
 
+// Component for public routes (like login) that redirects if already authenticated
+const PublicRoute = ({ children }: { children: React.ReactNode }) => {
+  const isAuthenticated = !!localStorage.getItem('access_token');
+  return isAuthenticated ? <Navigate to="/dashboard" replace /> : <>{children}</>;
+};
+
+function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route 
+          path="/login" 
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          } 
+        />
         <Route 
           path="/dashboard" 
-          element={isAuthenticated() ? <Dashboard /> : <Navigate to="/login" />} 
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          } 
         />
-        <Route path="/" element={<Navigate to="/dashboard" />} />
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </Router>
   );

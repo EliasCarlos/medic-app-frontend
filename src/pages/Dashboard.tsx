@@ -33,7 +33,7 @@ export const Dashboard: React.FC = () => {
 
       <main className="container dashboard-main">
         <section className="welcome-section">
-          <h2>Olá, Dr. {user?.name || 'Médico'}! 👋</h2>
+          <h2>Olá, {user?.role === 'doctor' ? 'Dr.' : ''} {user?.name || 'Usuário'}!</h2>
           <p>Temos um dia produtivo pela frente. Aqui estão suas atualizações.</p>
         </section>
 

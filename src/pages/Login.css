@@ -32,6 +32,7 @@
   font-weight: 700;
   color: var(--text-main);
   background: linear-gradient(to right, var(--primary), var(--secondary));
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 0.5rem;

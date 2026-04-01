@@ -16,7 +16,7 @@ export const Login: React.FC = () => {
     mutationFn: () => authService.login(email, password),
     onSuccess: (data) => {
       localStorage.setItem('user_role', data.role);
-      navigate('/dashboard');
+      navigate('/dashboard', { replace: true });
     },
     onError: (error: any) => {
       setErrorMessage(error.message || 'Credenciais inválidas');
