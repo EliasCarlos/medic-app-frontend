@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { authService } from '../services/api';
-import { Button } from '../components/Button';
-import { Input } from '../components/Input';
-import './Login.css';
+import { authService } from '../../services/api';
+import { Button } from '../../components/Button';
+import { Input } from '../../components/Input';
+import './styles.css';
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState('');

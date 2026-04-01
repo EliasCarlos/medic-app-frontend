@@ -1,8 +1,8 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { userService, authService } from '../services/api';
-import { Button } from '../components/Button';
-import './Dashboard.css';
+import { userService, authService } from '../../services/api';
+import { Button } from '../../components/Button';
+import './styles.css';
 
 export const Dashboard: React.FC = () => {
   const role = localStorage.getItem('user_role') || 'usuário';
