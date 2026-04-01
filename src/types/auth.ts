@@ -2,7 +2,7 @@ export interface User {
   id: string;
   name: string;
   email: string;
-  role: 'doctor' | 'patient';
+  role: 'doctor' | 'patient' | 'admin';
 }
 
 export interface Patient extends User {
@@ -12,7 +12,7 @@ export interface Patient extends User {
 
 export interface AuthResponse {
   access_token: string;
-  role: 'doctor' | 'patient';
+  role: 'doctor' | 'patient' | 'admin';
 }
 
 export interface CreatePatientData {

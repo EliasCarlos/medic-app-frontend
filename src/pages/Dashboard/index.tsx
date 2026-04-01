@@ -4,6 +4,7 @@ import { userService, authService } from '../../services/api';
 import { Button } from '../../components/Button';
 import { DoctorDashboard } from './DoctorDashboard';
 import { PatientDashboard } from './PatientDashboard';
+import { AdminDashboard } from './AdminDashboard';
 import { ThemeToggle } from '../../components/ThemeToggle';
 import './styles.css';
 
@@ -45,7 +46,9 @@ export const Dashboard: React.FC = () => {
       </header>
 
       <main className="container dashboard-main">
-        {user.role === 'doctor' ? (
+        {user.role === 'admin' ? (
+          <AdminDashboard user={user} />
+        ) : user.role === 'doctor' ? (
           <DoctorDashboard user={user} />
         ) : (
           <PatientDashboard user={user} />
